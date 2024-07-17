@@ -1,9 +1,19 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from app.crud import get_tasks, create_task as crud_create_task, update_task as crud_update_task, delete_task
 from app.firebase_init import ref  # Ensure the Firebase initialization runs
 
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 class TaskCreate(BaseModel):
     title: str
