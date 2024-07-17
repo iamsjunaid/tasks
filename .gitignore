@@ -2,5 +2,3 @@ __pycache__/
 *.pyc
 .env
 service-account-key.json
-
-node_modules/
