@@ -1,7 +1,5 @@
-import firebase_admin
-from firebase_admin import db
-from firebase import ref
 import time
+from app.firebase_init import ref  # Ensure the Firebase initialization runs
 
 def get_tasks():
     tasks = ref.get()
@@ -10,8 +8,7 @@ def get_tasks():
     return []
 
 def create_task(title: str, description: str):
-    print(title, description)
-    current_time = int(time.time() * 1000)  
+    current_time = int(time.time() * 1000)
     new_task_ref = ref.push()
     new_task_ref.set(
         {
