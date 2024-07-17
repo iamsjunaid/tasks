@@ -1,21 +1,16 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from crud import get_tasks, create_task as crud_create_task, update_task as crud_update_task, delete_task as crud_delete_task
-app = FastAPI() 
+from app.crud import get_tasks, create_task as crud_create_task, update_task as crud_update_task, delete_task
+from app.firebase_init import ref  # Ensure the Firebase initialization runs
 
-class Task(BaseModel):
-    id: str
-    title: str
-    description: str
-    status: str
-    created_at: int
-
-class TaskUpdate(BaseModel):
-    status: str
+app = FastAPI()
 
 class TaskCreate(BaseModel):
     title: str
     description: str
+
+class TaskUpdate(BaseModel):
+    status: str
 
 @app.get("/api/tasks")
 def read_tasks():
@@ -36,7 +31,7 @@ def update_task_endpoint(task_id: str, task: TaskUpdate):
 
 @app.delete("/api/tasks/{task_id}")
 def delete_task_endpoint(task_id: str):
-    success = crud_delete_task(task_id)
+    success = delete_task(task_id)
     if not success:
         raise HTTPException(status_code=404, detail="Task not found")
     return {"message": "Task deleted successfully"}

@@ -3,10 +3,8 @@ import json
 from firebase_admin import credentials, initialize_app, db
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Get the service account key JSON from the environment variable
 service_account_key = os.getenv("SERVICE_ACCOUNT_KEY")
 
 if service_account_key:
