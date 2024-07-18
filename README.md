@@ -1,140 +1,102 @@
 # Task Management App
 
-A simple task management application built with FastAPI for the backend and React for the frontend. The backend uses Firebase Realtime Database to store and manage tasks.
+A simple task management application built with FastAPI for the backend and React for the frontend. The backend uses Firebase Realtime Database for data storage and management.
 
 ## Features
 
-- Create, update, and delete tasks
-- Display tasks in a table format
-- Edit tasks via a modal form
-- Real-time updates with Firebase
-
-## Technologies Used
-
-- **Backend**: FastAPI, Firebase Realtime Database
-- **Frontend**: React, Tailwind CSS
-- **Deployment**: Vercel
+- Create, update, and delete tasks.
+- View all tasks in a tabular format.
+- Update task status with a modal form.
+- Responsive design with Tailwind CSS.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js and npm installed
-- Python and pip installed
-- Firebase account with Realtime Database set up
-- Service account key for Firebase
+- Node.js and npm installed on your machine.
+- Python and pip installed on your machine.
+- Firebase account with a Realtime Database set up.
 
-### Backend Setup
+### Installation
 
-1. **Clone the repository**:
+1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/task-management-app.git
-    cd task-management-app/backend
+    git clone https://github.com/iamsjunaid/tasks.git
+    cd tasks
     ```
 
-2. **Create a virtual environment**:
-    ```bash
-    python -m venv env
-    source env/bin/activate  # On Windows, use `env\Scripts\activate`
-    ```
+2. Set up the backend:
 
-3. **Install the dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
+    a. Navigate to the backend directory:
+        ```bash
+        cd backend
+        ```
 
-4. **Set up Firebase**:
-    - Obtain your service account key JSON file from Firebase.
-    - Create a `.env` file in the `backend` directory with the following content:
-      ```env
-      SERVICE_ACCOUNT_KEY='your_service_account_key_json_content'
-      DATABASE_URL='https://your-database-name.firebaseio.com'
-      ```
+    b. Create a virtual environment and activate it:
+        ```bash
+        python -m venv venv
+        source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+        ```
 
-5. **Run the FastAPI server**:
-    ```bash
-    uvicorn main:app --reload
-    ```
+    c. Install the required dependencies:
+        ```bash
+        pip install -r requirements.txt
+        ```
 
-### Frontend Setup
+    d. Create a `.env` file in the backend directory with your Firebase credentials:
+        ```plaintext
+        SERVICE_ACCOUNT_KEY='{
+          "type": "service_account",
+          ...
+        }'
+        ```
 
-1. **Navigate to the frontend directory**:
-    ```bash
-    cd ../frontend
-    ```
+    e. Run the FastAPI backend:
+        ```bash
+        uvicorn main:app --reload
+        ```
 
-2. **Install the dependencies**:
-    ```bash
-    npm install
-    ```
+3. Set up the frontend:
 
-3. **Run the React development server**:
-    ```bash
-    npm start
-    ```
+    a. Navigate to the frontend directory:
+        ```bash
+        cd frontend
+        ```
 
-### Deployment to Vercel
+    b. Install the required dependencies:
+        ```bash
+        npm install
+        ```
 
-1. **Install Vercel CLI**:
-    ```bash
-    npm install -g vercel
-    ```
+    c. Run the React frontend:
+        ```bash
+        npm start
+        ```
 
-2. **Login to Vercel**:
-    ```bash
-    vercel login
-    ```
+## Deployment
 
-3. **Deploy the project**:
-    - Navigate to the `backend` directory and deploy the backend:
-      ```bash
-      cd backend
-      vercel --prod
-      ```
+### Firebase
 
-    - Navigate to the `frontend` directory and deploy the frontend:
-      ```bash
-      cd ../frontend
-      vercel --prod
-      ```
+1. Create a Firebase project and set up a Realtime Database.
+2. Download the service account key JSON file from the Firebase project settings.
+3. Add the service account key JSON to the backend `.env` file as the `SERVICE_ACCOUNT_KEY` environment variable.
 
-4. **Set environment variables on Vercel**:
-    - Go to the Vercel dashboard.
-    - Select your project.
-    - Go to Settings > Environment Variables and add the following variables:
-      ```env
-      SERVICE_ACCOUNT_KEY='your_service_account_key_json_content'
-      DATABASE_URL='https://your-database-name.firebaseio.com'
-      ```
+### Vercel
 
-## API Endpoints
+1. Create a new project on Vercel and link it to your GitHub repository.
+2. Add the `SERVICE_ACCOUNT_KEY` environment variable in the Vercel project settings.
+3. Deploy the project.
 
-- **GET /api/tasks**: Fetch all tasks.
-- **POST /api/tasks**: Create a new task.
-- **PUT /api/tasks/{task_id}**: Update a task's status.
-- **DELETE /api/tasks/{task_id}**: Delete a task.
+## Usage
 
-## How to Use
+- Open the [live link](https://tasks-vert.vercel.app/) to access the application.
+- Add, update, and delete tasks as needed.
 
-1. **Create a Task**:
-    - Open the frontend application.
-    - Fill out the form to create a new task and submit.
+## Links
 
-2. **Update a Task**:
-    - Click the "Edit" button next to the task you want to update.
-    - Change the status and submit the form.
-
-3. **Delete a Task**:
-    - Click the "Delete" button next to the task you want to delete.
-
-## Contributing
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b my-feature-branch`.
-3. Make your changes and commit them: `git commit -m 'Add some feature'`.
-4. Push to the branch: `git push origin my-feature-branch`.
-5. Open a pull request.
+- Live Link: [https://tasks-vert.vercel.app/](https://tasks-vert.vercel.app/)
+- Source Code: [https://github.com/iamsjunaid/tasks](https://github.com/iamsjunaid/tasks)
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/iamsjunaid/tasks/blob/main/LICENSE) file for details.
