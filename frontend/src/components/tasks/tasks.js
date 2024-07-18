@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { CiEdit } from "react-icons/ci";
+import { RiEdit2Line } from "react-icons/ri";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { HiOutlineChevronUpDown } from "react-icons/hi2";
 
 import { getAllTasks, updateTask, deleteTask } from "../../api/tasks";
 import UpdateTaskForm from "./update-task-form";
@@ -57,22 +58,36 @@ function Tasks() {
     } catch (err) {
       console.error("Failed to delete task", err);
     }
-  }
+  };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedTask(null);
   };
 
+  const handleSort = () => {
+    setTasks((prevTasks) => [...prevTasks].reverse());
+  };
+
   return (
     <div className="bg-white rounded-lg border border-gray-400 px-4 py-4 w-[66%] mx-auto h-4/5">
+      <h2 className="text-xl font-semibold my-2">Manage Tasks</h2>
       <table className="mx-auto border-separate border-spacing-4 w-full">
         <thead>
           <tr className="border-b">
             <th>Title</th>
             <th>Description</th>
             <th>Status</th>
-            <th>Created At</th>
+            <th className="flex justify-evenly items-center">
+              <p>Created At</p>
+              <span className="cursor-pointer text-center">
+                <HiOutlineChevronUpDown
+                  className="w-6 h-6 hover:text-white hover:bg-gray-400 hover:rounded-full"
+                  onClick={handleSort}
+                />
+              </span>
+            </th>
+
             <th>Actions</th>
           </tr>
         </thead>
@@ -85,10 +100,13 @@ function Tasks() {
               <td>{new Date(task.created_at).toLocaleString()}</td>
               <td>
                 <button onClick={() => handleUpdateClick(task)}>
-                  <CiEdit className="w-10 h-10 p-2 hover:text-white hover:bg-gray-400 hover:rounded-full" />
+                  <RiEdit2Line className="w-8 h-8 hover:text-white hover:bg-gray-400 hover:rounded-full p-1" />
                 </button>
-                <button onClick={() => handleDeleteClick(task)}className="ml-4">
-                  <RiDeleteBinLine className="w-10 h-10 p-2 hover:text-white hover:bg-gray-400 hover:rounded-full"/>
+                <button
+                  onClick={() => handleDeleteClick(task)}
+                  className="ml-4"
+                >
+                  <RiDeleteBinLine className="w-8 h-8 hover:text-white hover:bg-gray-400 hover:rounded-full p-1" />
                 </button>
               </td>
             </tr>
