@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { CiEdit } from "react-icons/ci";
+import { RiDeleteBinLine } from "react-icons/ri";
+
 import { getAllTasks, updateTask, deleteTask } from "../../api/tasks";
 import UpdateTaskForm from "./update-task-form";
 
@@ -63,9 +66,9 @@ function Tasks() {
 
   return (
     <div className="bg-white rounded-lg border border-gray-400 px-4 py-4 w-[66%] mx-auto h-4/5">
-      <table className="mx-auto border-separate border-spacing-4 border w-full">
+      <table className="mx-auto border-separate border-spacing-4 w-full">
         <thead>
-          <tr>
+          <tr className="border-b">
             <th>Title</th>
             <th>Description</th>
             <th>Status</th>
@@ -75,14 +78,18 @@ function Tasks() {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <tr key={task.id}>
+            <tr key={task.id} className="border-b">
               <td>{task.title}</td>
               <td>{task.description}</td>
               <td>{task.status}</td>
               <td>{new Date(task.created_at).toLocaleString()}</td>
               <td>
-                <button onClick={() => handleUpdateClick(task)}>u</button>
-                <button onClick={() => handleDeleteClick(task)}className="ml-4">x</button>
+                <button onClick={() => handleUpdateClick(task)}>
+                  <CiEdit className="w-10 h-10 p-2 hover:text-white hover:bg-gray-400 hover:rounded-full" />
+                </button>
+                <button onClick={() => handleDeleteClick(task)}className="ml-4">
+                  <RiDeleteBinLine className="w-10 h-10 p-2 hover:text-white hover:bg-gray-400 hover:rounded-full"/>
+                </button>
               </td>
             </tr>
           ))}

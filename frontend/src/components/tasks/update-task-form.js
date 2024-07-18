@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { MdClose } from "react-icons/md";
+import Button from "../button/button";
 
 function UpdateTaskForm({ task, onClose, onUpdate }) {
   const [status, setStatus] = useState(task.status);
@@ -15,24 +17,18 @@ function UpdateTaskForm({ task, onClose, onUpdate }) {
           className="flex flex-col items-center justify-center w-full gap-8"
           onSubmit={handleSubmit}
         >
-          <span className="m-2 cursor-pointer self-start" onClick={onClose}>
-            Close
-          </span>
+          <MdClose className="w-10 h-10 p-2 hover:text-white hover:bg-gray-400 hover:rounded-full cursor-pointer" onClick={onClose} />
           <div className="flex justify-around items-center gap-4 w-full">
-            <label>Status:</label>
-            <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <label>Status</label>
+            <select value={status} onChange={(e) => setStatus(e.target.value)} className="border border-gray-400 hover:border-gray-800 rounded w-32">
               <option value="todo">Todo</option>
               <option value="in_progress">In Progress</option>
               <option value="done">Done</option>
             </select>
           </div>
           <div className="flex justify-end w-full">
-            <button
-              type="submit"
-              className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-            >
-              Submit
-            </button>
+
+            <Button type="submit" className="mx-auto" onSubmit={handleSubmit}>Submit</Button>
           </div>
         </form>
       </div>
